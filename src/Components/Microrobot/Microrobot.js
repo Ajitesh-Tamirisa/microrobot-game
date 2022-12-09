@@ -18,7 +18,7 @@ function Microrobot() {
   const svgVariants = {
     hidden: {
       rotate:-360,
-      x:0,
+      x:100,
       y:0,
     },
     leftVisible: {
@@ -40,21 +40,22 @@ function Microrobot() {
 
   const handleKeyUp = e=>{
 
-    if(e.keyCode===37 && !leftRobotLock){
+    // w-87, a-65, s-83 , d-68;
+    if(e.keyCode===68 && !leftRobotLock){
       setLeftRobotX(parseFloat((leftRobotX+26.46).toFixed(2)))
       setLeftRobotLock(true)
       setMiddleRobotX(parseFloat((middleRobotX-13.53).toFixed(2)))
       setRightRobotX(parseFloat((rightRobotX-13.53).toFixed(2)))
       console.log("1")
     }
-    else if(e.keyCode===39 && leftRobotLock && !rightRobotLock){
+    else if(e.keyCode===37 && leftRobotLock && !rightRobotLock){
       setLeftRobotX(parseFloat((leftRobotX+14.39).toFixed(2)))
       setMiddleRobotX(parseFloat((middleRobotX+14.39).toFixed(2)))
       setRightRobotX(parseFloat((rightRobotX-25.60).toFixed(2)))
       setRightRobotLock(true)
       console.log("2")
     }
-    else if(e.keyCode===37 && leftRobotLock && rightRobotLock){
+    else if(e.keyCode===65 && leftRobotLock && rightRobotLock){
       setLeftRobotX(parseFloat((leftRobotX-25.60).toFixed(2)))
       setMiddleRobotX(parseFloat((middleRobotX+14.39).toFixed(2)))
       setRightRobotX(parseFloat((rightRobotX+14.39).toFixed(2)))
@@ -62,9 +63,9 @@ function Microrobot() {
       console.log("3")
     }
     else if(e.keyCode===39 && rightRobotLock && !leftRobotLock){
-      setLeftRobotX(parseFloat((leftRobotX-13.53).toFixed(2)))
-      setMiddleRobotX(parseFloat((middleRobotX-13.53).toFixed(2)))
-      setRightRobotX(parseFloat((rightRobotX+26.46).toFixed(2)))
+      setLeftRobotX(parseFloat((leftRobotX).toFixed(2)))
+      setMiddleRobotX(parseFloat((middleRobotX).toFixed(2)))
+      setRightRobotX(parseFloat((rightRobotX+39.99).toFixed(2)))
       setRightRobotLock(false)
       console.log("4")
     }
@@ -79,16 +80,19 @@ function Microrobot() {
 
   return (
     <div onKeyUp={handleKeyUp}  ref={arenaRef}>
-        <p><strong>LeftX-{leftRobotX}, MiddleX-{middleRobotX}, RightX-{rightRobotX}</strong></p>
-        <p><strong>{leftRobotLock?"Left Extend-false":"Left Extend-true"}, {rightRobotLock?"Right Extend-false":"Right Extend-true"}</strong></p>
+        {/* <p><strong>LeftX-{leftRobotX}, MiddleX-{middleRobotX}, RightX-{rightRobotX}</strong></p>
+        <p><strong>{leftRobotLock?"Left Extend-false":"Left Extend-true"}, {rightRobotLock?"Right Extend-false":"Right Extend-true"}</strong></p> */}
         <button onClick={handleClick}>Play now</button>
-        <div style={{width:100, height:160, display:'flex', borderRight:'1px solid black'}}>
-        <motion.img variants={svgVariants} initial="hidden" animate="leftVisible" src={microrobot1}/>  
-        <motion.img variants={svgVariants} initial="hidden" animate="middleVisible" src={microrobot2}/>
-        <motion.img variants={svgVariants} initial="hidden" animate="rightVisible" src={microrobot3}/>  
+        <div style={{width:80, height:100, display:'flex'}}>
+          <motion.img variants={svgVariants} initial="hidden" animate="leftVisible" src={microrobot1}/>  
+          <motion.img variants={svgVariants} initial="hidden" animate="middleVisible" src={microrobot2}/>
+          <motion.img variants={svgVariants} initial="hidden" animate="rightVisible" src={microrobot3}/>  
         </div> 
     </div>
   )
 }
+
+// up arrow releases locks
+// space bar for final movement
 
 export default Microrobot
