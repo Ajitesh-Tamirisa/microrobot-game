@@ -23,7 +23,8 @@ function App() {
       <div className="arena">        
         <img src={BackgroundStream} alt="Background Stream" className='backgroundStream'/>
         <div className='characters'>
-          <Background focus={focus}/>
+          <Microrobot focus={focus}/>
+          <Background focus={focus} pos={}/>
         </div>
       </div>
       

@@ -8,11 +8,11 @@ const svgVariants = {};
 function Background(props) {
   const [posX, setPosX] = useState(450);
 
-  const handleMovement = () => {
-    for (var i = 100; i < 500; ++i) {
-      setPosX(i);
-    }
-  };
+  // const handleMovement = () => {
+  //   for (var i = 100; i < 500; ++i) {
+  //     setPosX(i);
+  //   }
+  // };
 
   return (
     <div className="bacteria">
@@ -33,6 +33,7 @@ function Background(props) {
         }}
         onAnimationComplete={() => {
           setPosX(posX + 3);
+          // console.log("Bacteria: " + (posX-150))
         }}
       />
     </div>
